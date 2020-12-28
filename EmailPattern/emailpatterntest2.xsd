@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:simpleType name="userType">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="64"/>
+			<xsd:minLength value="6"/>
+			<xsd:pattern value="([a-zA-Z0-9_-])+(([a-zA-Z0-9_\-.])*([a-zA-Z0-9_-])+)+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="emailType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="([\.a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(([a-zA-Z0-9_-])*\.([a-zA-Z0-9_-])+)+"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="unicodeType">
+		<xsd:restriction base="xsd:string">
+			<xsd:pattern value="[&amp;#x0020;-&amp;#x007F;&amp;#x00A0;-&amp;#x00FF;]{1,8}"/>
+		</xsd:restriction>
+	</xsd:simpleType>	
+	<xsd:complexType name="userList">
+		<xsd:sequence>
+			<xsd:element name="user" type="unicodeType" minOccurs="0" maxOccurs="1000"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="userList" type="userList"/>
+</xsd:schema>
